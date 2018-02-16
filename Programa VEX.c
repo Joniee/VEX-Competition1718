@@ -18,7 +18,6 @@
 #include "Vex_Competition_Includes.c"
 
 int OFF = 0;
-int HAND = 0;
 
 void movement()
 //* ------------------------------------------------------------------ *//
@@ -32,10 +31,19 @@ void movement()
 	int x, y;
 	x = vexRT[Ch4];
 	y = vexRT[Ch3];
+	if(x <= 5 && x >= -5)
+	{
+		x = 0;
+	}
+	if(y <= 5 && y >= -5)
+	{
+		y = 0;
+	}
 	motor[9] = (2*(-(x+y)));
 	motor[0] = (2*(-(-x+y)));
 	motor[2] = (2*(-(x-y)));
 	motor[1] = (2*(x+y));
+
 }
 
 void allInOff()
@@ -66,17 +74,6 @@ void autonomousControl()
 
 }
 
-void resHand()
-{
-	if(HAND == 1)
-	{
-		motor[8] = 70;
-	}
-	else
-	{
-		motor[8] = 0;
-	}
-}
 
 task usercontrol()
 {
@@ -103,25 +100,24 @@ task usercontrol()
 		}
 		if(vexRT[Btn5U] == 1)
 		{
-			motor[3] = -100;
-			motor[4] = 100;
+			motor[3] = 200;
+			motor[4] = -200;
 		}
 		if(vexRT[Btn5D] == 1)
 		{
-			motor[3] = 100;
-			motor[4] = -100;
+			motor[3] = -200;
+			motor[4] = 200;
 		}
 		if(vexRT[Btn8R] == 1)
 		{
-			HAND = 1;
+			motor[8] = 200;
 		}
 		if(vexRT[Btn8L] == 1)
 		{
-			HAND = 0;
+			motor[8] = -200;
 		}
 		sleep(100);
 		allInOff();
-		resHand();
 	}
 
 }
