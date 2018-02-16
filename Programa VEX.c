@@ -39,32 +39,36 @@ task usercontrol()
 			motor[3] = 250;
 			motor[4] = -250;
 		}
+
 		if(vexRT[Btn5D] == 1)
 		{
 			motor[3] = -250;
-			motor[4] = 250
-			;
+			motor[4] = 250;
 		}
+
 		if(vexRT[Btn6U] == 1)
 		{
 			motor[8] = 200;
 		}
+
 		if(vexRT[Btn6D] == 1)
 		{
 			motor[8] = -200;
 		}
+
 		if(vexRT[Btn8D] == 1)
 		{
 			motor[7] = 200;
 		}
+
 		if(vexRT[Btn8U] == 1)
 		{
 			motor[7] = -200;
 		}
+
 		sleep(100);
 		allInOff();
 	}
-
 }
 
 task autonomous()
