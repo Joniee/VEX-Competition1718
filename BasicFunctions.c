@@ -68,7 +68,7 @@ int percent(int value)
 	return aux;
 }
 
-void forward()
+void forwardMove()
 {
 	motor[0] = percent(100);
 	motor[1] = percent(100);
@@ -77,6 +77,41 @@ void forward()
 }
 
 void autonomousControl()
+{
+
+}
+
+void backwardMove()
+{
+
+}
+
+void leftMove();
+{
+
+}
+
+void rightMove();
+{
+
+}
+
+void heightMove();
+{
+
+}
+
+void weightMove();
+{
+
+}
+
+void pinMove();
+{
+
+}
+
+void armMove();
 {
 
 }
