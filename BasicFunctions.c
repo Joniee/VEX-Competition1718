@@ -57,7 +57,23 @@ void pre_auton()
   // running between Autonomous and Driver controlled modes. You will need to
   // manage all user created tasks if set to false.
   bStopTasksBetweenModes = true;
-    allInOff();
+  allInOff();
+}
+
+
+int percent(int value)
+{
+	int aux;
+	aux = ((value * 250)/100);
+	return aux;
+}
+
+void forward()
+{
+	motor[0] = percent(100);
+	motor[1] = percent(100);
+	motor[2] = percent(100);
+	motor[9] = percent(100);
 }
 
 void autonomousControl()
