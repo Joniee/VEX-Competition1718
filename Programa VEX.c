@@ -12,8 +12,8 @@
 
 #pragma platform(VEX2)
 #pragma competitionControl(Competition)
-#pragma autonomousDuration(15) // MAJ: We need to change that
-#pragma userControlDuration(105) // : We need to change that.
+#pragma autonomousDuration(15) 
+#pragma userControlDuration(105)
 
 #include "Vex_Competition_Includes.c"
 
