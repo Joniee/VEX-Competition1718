@@ -12,8 +12,8 @@
 
 #pragma platform(VEX2)
 #pragma competitionControl(Competition)
-#pragma autonomousDuration(45) // MAJ: We need to change that
-#pragma userControlDuration(75) // MAJ: We need to change that.
+#pragma autonomousDuration(15) // MAJ: We need to change that
+#pragma userControlDuration(105) // : We need to change that.
 
 #include "Vex_Competition_Includes.c"
 
@@ -44,6 +44,14 @@ void movement()
 	motor[2] = (2*(-(x-y)));
 	motor[1] = (2*(x+y));
 
+}
+
+void arm()
+{
+	int x;
+	x = vexRT[Ch2];
+	motor[5] = -(2*x);
+	motor[6] = (2*x);
 }
 
 void allInOff()
@@ -80,41 +88,34 @@ task usercontrol()
 	while(1)
 	{
 		movement();
-		if(vexRT[Btn7D] == 1)
-		{
-			motor[5] = 100;
-			motor[6] = -100;
-		}
-		if(vexRT[Btn7U] == 1)
-		{
-			motor[5] = -100;
-			motor[6] = 100;
-		}
-		if(vexRT[Btn8U] == 1)
-		{
-			motor[7] = -150;
-		}
-		if(vexRT[Btn8D] == 1)
-		{
-			motor[7] = 150;
-		}
+		arm();
+
 		if(vexRT[Btn5U] == 1)
 		{
-			motor[3] = 200;
-			motor[4] = -200;
+			motor[3] = 250;
+			motor[4] = -250;
 		}
 		if(vexRT[Btn5D] == 1)
 		{
-			motor[3] = -200;
-			motor[4] = 200;
+			motor[3] = -250;
+			motor[4] = 250
+			;
 		}
-		if(vexRT[Btn8R] == 1)
+		if(vexRT[Btn6U] == 1)
 		{
 			motor[8] = 200;
 		}
-		if(vexRT[Btn8L] == 1)
+		if(vexRT[Btn6D] == 1)
 		{
 			motor[8] = -200;
+		}
+		if(vexRT[Btn8D] == 1)
+		{
+			motor[7] = 200;
+		}
+		if(vexRT[Btn8U] == 1)
+		{
+			motor[7] = -200;
 		}
 		sleep(100);
 		allInOff();
