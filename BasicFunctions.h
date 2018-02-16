@@ -1,12 +1,16 @@
 //* Basic functions and global vars for move robot and their parts.
 
+
+#include "BasicFunctions.c"
+
 int OFF = 0;
 int MAX = 250;
 int MIN = -250;
 
 
 
-
+void pre_auton();
+void autonomous_control();
 
 
 void control();
