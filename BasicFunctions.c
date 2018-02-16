@@ -86,32 +86,32 @@ void backwardMove()
 
 }
 
-void leftMove();
+void leftMove()
 {
 
 }
 
-void rightMove();
+void rightMove()
 {
 
 }
 
-void heightMove();
+void heightMove()
 {
 
 }
 
-void weightMove();
+void weightMove()
 {
 
 }
 
-void pinMove();
+void pinMove()
 {
 
 }
 
-void armMove();
+void armMove()
 {
 
 }
