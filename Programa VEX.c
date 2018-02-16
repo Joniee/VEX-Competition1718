@@ -42,8 +42,7 @@ task usercontrol()
 		if(vexRT[Btn5D] == 1)
 		{
 			motor[3] = -250;
-			motor[4] = 250
-			;
+			motor[4] = 250;
 		}
 		if(vexRT[Btn6U] == 1)
 		{
