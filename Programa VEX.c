@@ -12,12 +12,21 @@
 
 #pragma platform(VEX2)
 #pragma competitionControl(Competition)
-#pragma autonomousDuration(15) 
+#pragma autonomousDuration(15)
 #pragma userControlDuration(105)
 
 #include "Vex_Competition_Includes.c"
 
 int OFF = 0;
+
+void pre_auton()
+{
+  // Set bStopTasksBetweenModes to false if you want to keep user created tasks
+  // running between Autonomous and Driver controlled modes. You will need to
+  // manage all user created tasks if set to false.
+  bStopTasksBetweenModes = true;
+//  allInOff();
+}
 
 void movement()
 //* ------------------------------------------------------------------ *//
@@ -66,15 +75,6 @@ void allInOff()
 	{
 		motor[i]=OFF;
 	}
-}
-
-void pre_auton()
-{
-  // Set bStopTasksBetweenModes to false if you want to keep user created tasks
-  // running between Autonomous and Driver controlled modes. You will need to
-  // manage all user created tasks if set to false.
-  bStopTasksBetweenModes = true;
-    allInOff();
 }
 
 void autonomousControl()
