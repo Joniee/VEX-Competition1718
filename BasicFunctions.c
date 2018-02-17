@@ -67,10 +67,26 @@ void forwardMove()
 
 void autonomousControl()
 {
+	/*
 	rightMove();
 	sleep(1000);
 	leftMove();
 	sleep(1000);
+	*/
+
+
+	backwardMove();
+	sleep(2000);
+	allInOff();
+	weightMoveUp();
+	sleep(100);
+	allInOff();
+	forwardMove();
+	/*
+	sleep(100);
+	allInOff();
+	weightMoveUp();
+	*/
 }
 
 void backwardMove()
@@ -114,7 +130,7 @@ void weightMoveUp()
 	motor[7] = percent(100);
 }
 
-void wieghtMoveDown()
+void weightMoveDown()
 {
 	motor[7] = -percent(100);
 }
