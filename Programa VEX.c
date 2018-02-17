@@ -18,6 +18,8 @@
 #include "Vex_Competition_Includes.c"
 #include "BasicFunctions.c"
 
+int hand = 0;
+
 void pre_auton()
 {
   // Set bStopTasksBetweenModes to false if you want to keep user created tasks
@@ -33,6 +35,11 @@ task usercontrol()
 	{
 		movement();
 		arm();
+		if(hand == 1)
+		{
+			motor[5] = -percent(10);
+			motor[6] = percent(10);
+		}
 
 		if(vexRT[Btn5U] == 1)
 		{
@@ -65,6 +72,15 @@ task usercontrol()
 		{
 			motor[7] = -200;
 		}
+		if(vexRT[Btn8R] == 1)
+		{
+			hand = 1;
+		}
+		if(vexRT[Btn8L] == 1)
+		{
+			hand = 0;
+		}
+
 
 		sleep(100);
 		allInOff();

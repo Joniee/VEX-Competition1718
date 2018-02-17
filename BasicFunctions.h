@@ -2,8 +2,7 @@
 
 
 int OFF = 0;
-int MAX = 250;
-int MIN = -250;
+int HAND = 0;
 
 void autonomousControl();
 
@@ -18,10 +17,16 @@ void backwardMove();
 void leftMove();
 void rightMove();
 
-void heightMove();
+void heightMoveUp();
+void heightMoveDown();
 
-void weightMove();
+void weightMoveUp();
+void weightMoveDown();
 
-void pinMove();
+void pinMoveUp();
+void pinMoveDown();
 
-void armMove();
+void armMoveUp();
+void armMoveDown();
+
+void staticHand();

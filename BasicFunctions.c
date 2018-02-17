@@ -97,22 +97,52 @@ void rightMove()
 	motor[9] = percent(100);
 }
 
-void heightMove()
+void heightMoveUp()
 {
-
+	motor[3] = percent(100);
+	motor[4] = -percent(100);
 }
 
-void weightMove()
+void heightMoveDown()
 {
-
+	motor[3] = -percent(100);
+	motor[4] = percent(100);
 }
 
-void pinMove()
+void weightMoveUp()
 {
-
+	motor[7] = percent(100);
 }
 
-void armMove()
+void wieghtMoveDown()
 {
+	motor[7] = -percent(100);
+}
 
+void pinMoveOpen()
+{
+	motor[8] = percent(100);
+}
+
+void pinMoveClose()
+{
+	motor[8] = -percent(100);
+}
+
+void armMoveUp()
+{
+	motor[5] = percent(100);
+	motor[6] = -percent(100);
+}
+
+void armMoveDown()
+{
+	motor[5] = -percent(100);
+	motor[6] = percent(100);
+}
+
+void staticHand()
+{
+	motor[5] = percent(25);
+	motor[6] = -percent(25);
 }
