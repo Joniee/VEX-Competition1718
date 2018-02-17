@@ -67,14 +67,6 @@ void forwardMove()
 
 void autonomousControl()
 {
-	/*
-	rightMove();
-	sleep(1000);
-	leftMove();
-	sleep(1000);
-	*/
-
-
 	backwardMove();
 	sleep(2000);
 	allInOff();
@@ -82,11 +74,6 @@ void autonomousControl()
 	sleep(100);
 	allInOff();
 	forwardMove();
-	/*
-	sleep(100);
-	allInOff();
-	weightMoveUp();
-	*/
 }
 
 void backwardMove()
