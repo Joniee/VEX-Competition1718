@@ -67,13 +67,15 @@ void forwardMove()
 
 void autonomousControl()
 {
+	/*
 	backwardMove();
 	sleep(2000);
 	allInOff();
 	weightMoveUp();
-	sleep(100);
+	sleep(200);
 	allInOff();
 	forwardMove();
+	*/
 }
 
 void backwardMove()
@@ -114,12 +116,12 @@ void heightMoveDown()
 
 void weightMoveUp()
 {
-	motor[7] = percent(100);
+	motor[7] = -percent(100);
 }
 
 void weightMoveDown()
 {
-	motor[7] = -percent(100);
+	motor[7] = 	percent(100);
 }
 
 void pinMoveOpen()
