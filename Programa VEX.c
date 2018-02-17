@@ -12,8 +12,6 @@
 
 #pragma platform(VEX2)
 #pragma competitionControl(Competition)
-#pragma autonomousDuration(15)
-#pragma userControlDuration(105)
 #pragma autonomousDuration(45)
 #pragma userControlDuration(75)
 
