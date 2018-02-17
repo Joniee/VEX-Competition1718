@@ -59,30 +59,42 @@ int percent(int value)
 
 void forwardMove()
 {
-	motor[0] = percent(100);
+	motor[0] = -percent(100);
 	motor[1] = percent(100);
 	motor[2] = percent(100);
-	motor[9] = percent(100);
+	motor[9] = -percent(100);
 }
 
 void autonomousControl()
 {
-
+	rightMove();
+	sleep(1000);
+	leftMove();
+	sleep(1000);
 }
 
 void backwardMove()
 {
-
+	motor[0] = percent(100);
+	motor[1] = -percent(100);
+	motor[2] = -percent(100);
+	motor[9] = percent(100);
 }
 
 void leftMove()
 {
-
+	motor[0] = percent(100);
+	motor[1] = -percent(0);
+	motor[2] = percent(0);
+	motor[9] = -percent(100);
 }
 
 void rightMove()
 {
-
+	motor[0] = -percent(100);
+	motor[1] = percent(0);
+	motor[2] = -percent(0);
+	motor[9] = percent(100);
 }
 
 void heightMove()
