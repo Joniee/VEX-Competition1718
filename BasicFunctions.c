@@ -10,9 +10,8 @@ void movement()
 //* return: this function do not return anything. *//
 //* ------------------------------------------------------------------ *//
 {
-	int x, y;
-	x = vexRT[Ch4];
-	y = vexRT[Ch3];
+	int x = vexRT[Ch4];
+	int y = vexRT[Ch3];
 	if(x <= 5 && x >= -5)
 	{
 		x = 0;
@@ -21,19 +20,26 @@ void movement()
 	{
 		y = 0;
 	}
-	motor[9] = (2*(-(x+y)));
-	motor[0] = (2*(-(-x+y)));
-	motor[2] = (2*(-(x-y)));
-	motor[1] = (2*(x+y));
+	motor[9] = (percent(-(x+y)));
+	motor[0] = (percent(-(-x+y)));
+	motor[2] = (percent(-(x-y)));
+	motor[1] = (percent(x+y));
 
 }
 
 void arm()
+//* ------------------------------------------------------------------ *//
+//* Refresh motor information to activate and move an arm with values from axis since -100 to 100 *//
+//* The robot can moves his arm from forward to backward *//
+//* params: none. *//
+//* changes: get Axis 2 values and select values for arm motors. *//
+//* vars: int x = vexRT[Ch2] gets value from joystick right analogic button . *//
+//* return: this function do not return anything. *//
+//* ------------------------------------------------------------------ *//
 {
-	int x;
-	x = vexRT[Ch2];
-	motor[5] = -(2*x);
-	motor[6] = (2*x);
+	int x = vexRT[Ch2];
+	motor[5] = (percent(-x));
+	motor[6] = (percent(x));
 }
 
 void allInOff()
@@ -59,10 +65,10 @@ int percent(int value)
 
 void forwardMove()
 {
-	motor[0] = -percent(100);
+	motor[0] = percent(-100);
 	motor[1] = percent(100);
 	motor[2] = percent(100);
-	motor[9] = -percent(100);
+	motor[9] = percent(-100);
 }
 
 void autonomousControl()
@@ -81,47 +87,47 @@ void autonomousControl()
 void backwardMove()
 {
 	motor[0] = percent(100);
-	motor[1] = -percent(100);
-	motor[2] = -percent(100);
+	motor[1] = percent(-100);
+	motor[2] = percent(-100);
 	motor[9] = percent(100);
 }
 
 void leftMove()
 {
 	motor[0] = percent(100);
-	motor[1] = -percent(0);
-	motor[2] = percent(0);
-	motor[9] = -percent(100);
+	motor[1] = OFF;
+	motor[2] = OFF;
+	motor[9] = percent(-100);
 }
 
 void rightMove()
 {
-	motor[0] = -percent(100);
-	motor[1] = percent(0);
-	motor[2] = -percent(0);
+	motor[0] = percent(-100);
+	motor[1] = OFF;
+	motor[2] = OFF;
 	motor[9] = percent(100);
 }
 
 void heightMoveUp()
 {
 	motor[3] = percent(100);
-	motor[4] = -percent(100);
+	motor[4] = percent(-100);
 }
 
 void heightMoveDown()
 {
-	motor[3] = -percent(100);
+	motor[3] = percent(-100);
 	motor[4] = percent(100);
 }
 
 void weightMoveUp()
 {
-	motor[7] = -percent(100);
+	motor[7] = percent(-100);
 }
 
 void weightMoveDown()
 {
-	motor[7] = 	percent(100);
+	motor[7] = percent(100);
 }
 
 void pinMoveOpen()
@@ -131,25 +137,25 @@ void pinMoveOpen()
 
 void pinMoveClose()
 {
-	motor[8] = -percent(100);
+	motor[8] = percent(-100);
 }
 
 void armMoveUp()
 {
 	motor[5] = percent(100);
-	motor[6] = -percent(100);
+	motor[6] = percent(-100);
 }
 
 void armMoveDown()
 {
-	motor[5] = -percent(100);
+	motor[5] = percent(-100);
 	motor[6] = percent(100);
 }
 
 void staticHand()
 {
 	motor[5] = percent(25);
-	motor[6] = -percent(25);
+	motor[6] = percent(-25);
 }
 
 void startAllSensor()
