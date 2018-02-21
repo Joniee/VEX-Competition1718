@@ -53,7 +53,7 @@ void allInOff()
 int percent(int value)
 {
 	int aux;
-	aux = ((value * 250)/100);
+	aux = ((value * MAX)/100);
 	return aux;
 }
 
@@ -150,4 +150,18 @@ void staticHand()
 {
 	motor[5] = percent(25);
 	motor[6] = -percent(25);
+}
+
+void startAllSensor()
+{
+	int i = 0;
+	for(i;i<nSensor;i++)
+	{
+		startSensor(nSensor + fSensor);
+	}
+}
+
+void startSensor (int sensor)
+{
+	sensorValue[sensor] = 0;
 }

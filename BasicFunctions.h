@@ -3,6 +3,7 @@
 
 int OFF = 0;
 int HAND = 0;
+int MAX = 127;
 
 void autonomousControl();
 
@@ -30,3 +31,6 @@ void armMoveUp();
 void armMoveDown();
 
 void staticHand();
+
+void startAllSensors();
+void startSensor():
