@@ -1,9 +1,11 @@
 //* Basic functions and global vars for move robot and their parts.
 
 
-int OFF = 0;
+#define WHEEL 31.91857472
+#define MAX 127
+#define OFF 0
+
 int HAND = 0;
-int MAX = 127;
 
 void autonomousControl();
 
