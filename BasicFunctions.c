@@ -65,13 +65,14 @@ int percent(int value)
 	return aux;
 }
 
+
+void forwardMove(int distance)
 //* ------------------------------------------------------------------ *//
 //* Move wheel motors for move robor on forward direction with encoders *//
 //* param: int distance (Value in centimeters) - The distance that the robot will travel. *//
 //* changes: array motor values equal to result of function percent (a number from -127 to 127). *//
 //* return: this function do not return anything. *//
 //* ------------------------------------------------------------------ *//
-void forwardMove(int distance)
 {
 	int normalSpeed = percent(100);
 	int slowSpeed = percent(95);
