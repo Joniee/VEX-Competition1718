@@ -50,9 +50,11 @@ void allInOff()
 //* return: this function do not return anything. *//
 //* ------------------------------------------------------------------ *//
 {
-	for(int i=0;i<10;i++)
+	int i = 0;
+
+	for(i; i < 10; i++)		//* I can't understand why (*Warning*:Meaningless statement -- no code generated)
 	{
-		motor[i]=OFF;
+		motor[i] = OFF;
 	}
 }
 
@@ -63,25 +65,55 @@ int percent(int value)
 	return aux;
 }
 
-void forwardMove()
+//* ------------------------------------------------------------------ *//
+//* Move wheel motors for move robor on forward direction with encoders *//
+//* param: int distance (Value in centimeters) - The distance that the robot will travel. *//
+//* changes: array motor values equal to result of function percent (a number from -127 to 127). *//
+//* return: this function do not return anything. *//
+//* ------------------------------------------------------------------ *//
+void forwardMove(int distance)
 {
-	motor[0] = percent(-100);
-	motor[1] = percent(100);
-	motor[2] = percent(100);
-	motor[9] = percent(-100);
+	int normalSpeed = percent(100);
+	int slowSpeed = percent(95);
+
+
+	while(SensorValue[23] < distance)
+	{
+		if(SensorValue[23] > SensorValue[25])		//* Every condition are wrong, surplus two motor values.
+		{
+			motor[0] = normalSpeed;
+			motor[1] = slowSpeed;
+			motor[2] = normalSpeed;
+			motor[9] = normalSpeed;
+		}
+		if(SensorValue[23] < SensorValue[25])		//* Wrong too.
+		{
+			motor[0] = slowSpeed;
+			motor[1] = normalSpeed;
+			motor[2] = normalSpeed;
+			motor[9] = normalSpeed;
+		}
+		if(SensorValue[23] == SensorValue[25])		//* Wrong too.
+		{
+			motor[0] = normalSpeed;
+			motor[1] = normalSpeed;
+			motor[2] = normalSpeed;
+			motor[9] = normalSpeed;
+		}
+
+		startSensor(23);
+		startSensor(25);
+	}
+}
+
+int robotPath(int distance)
+{
+	return (distance/WHEEL)*360;
 }
 
 void autonomousControl()
 {
-	/*
-	backwardMove();
-	sleep(2000);
-	allInOff();
-	weightMoveUp();
-	sleep(200);
-	allInOff();
-	forwardMove();
-	*/
+
 }
 
 void backwardMove()
@@ -108,16 +140,21 @@ void rightMove()
 	motor[9] = percent(100);
 }
 
-void heightMoveUp()
+void weightIn()
 {
-	motor[3] = percent(100);
-	motor[4] = percent(-100);
+	if(SensorValue[21] == 1)
+	{
+		weightMoveUp();
+		while(SensorValue[22] == 0)
+		{
+			//* Robot is lifting the tray. TO DO: we need to change this wasted time.
+		}
+	}
 }
 
-void heightMoveDown()
+void weightOut()
 {
-	motor[3] = percent(-100);
-	motor[4] = percent(100);
+
 }
 
 void weightMoveUp()
@@ -160,14 +197,15 @@ void staticHand()
 
 void startAllSensor()
 {
-	int i = 0;
-	for(i;i<nSensor;i++)
+	int i;
+	i = (33-5);				//* I can't understand why i can't put defined vars.
+	for(i; i <= 25; i++)	//* I can't understand why (*Warning*:Meaningless statement -- no code generated)
 	{
-		startSensor(nSensor + fSensor);
+		startSensor(i);
 	}
 }
 
 void startSensor (int sensor)
 {
-	sensorValue[sensor] = 0;
+	SensorValue[sensor] = 0;
 }

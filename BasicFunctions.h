@@ -1,9 +1,12 @@
 //* Basic functions and global vars for move robot and their parts.
 
 
-#define WHEEL 31.91857472
+#define WHEEL 31.91857472	//* Value in centimeters.
 #define MAX 127
 #define OFF 0
+#define NUMBER_SENSOR = 5			//* Number of sensors connected.
+#define LAST_SENSOR = 33		//* Variable's name of last sensor connected.
+#define NUMBER_MOTOR = 10			//* Number of motors connected.
 
 int HAND = 0;
 
@@ -14,25 +17,24 @@ void movement();
 void allInOff();
 
 int percent(int value);
+int robotPath(int distance);
 
-void forwardMove();
+
+void forwardMove(int distance);
 void backwardMove();
 void leftMove();
 void rightMove();
 
-void heightMoveUp();
-void heightMoveDown();
-
 void weightMoveUp();
 void weightMoveDown();
 
-void pinMoveUp();
-void pinMoveDown();
+void pinMoveOpen();
+void pinMoveClose();
 
 void armMoveUp();
 void armMoveDown();
 
 void staticHand();
 
-void startAllSensors();
-void startSensor():
+void startAllSensor();
+void startSensor(int sensor);
