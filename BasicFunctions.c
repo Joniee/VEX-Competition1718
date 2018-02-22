@@ -114,31 +114,23 @@ int robotPath(int distance)
 
 void autonomousControl()
 {
-
+	forwardMove(robotPath(200));		//* Robot travel two meters.
+	allInOff();
 }
 
 void backwardMove()
 {
-	motor[0] = percent(100);
-	motor[1] = percent(-100);
-	motor[2] = percent(-100);
-	motor[9] = percent(100);
+	//*TODO: like forwardMove fuction.
 }
 
 void leftMove()
 {
-	motor[0] = percent(100);
-	motor[1] = OFF;
-	motor[2] = OFF;
-	motor[9] = percent(-100);
+	//*TODO: like forwardMove fuction.
 }
 
 void rightMove()
 {
-	motor[0] = percent(-100);
-	motor[1] = OFF;
-	motor[2] = OFF;
-	motor[9] = percent(100);
+	//*TODO: like forwardMove fuction.
 }
 
 void weightIn()
