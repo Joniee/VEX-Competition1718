@@ -212,7 +212,7 @@ void leftMove(int degrees)
 }
 
 
-void rightMove()
+void rightMove(int degrees)
 //* ------------------------------------------------------------------ *//
 //* Move wheel motors for turn left the robot with encoders and gyro *//
 //* param: int degrees (Value in degrees) - The distance that the robot will turn. *//

@@ -23,9 +23,9 @@ int robotPath(int distance);
 
 
 void forwardMove(int distance);
-void backwardMove();
-void leftMove();
-void rightMove();
+void backwardMove(int distance);
+void leftMove(int degrees);
+void rightMove(int degrees);
 
 void weightMoveUp();
 void weightMoveDown();
