@@ -16,7 +16,7 @@ void arm();
 void movement();
 void allInOff();
 void motorsInOff();
-void motorWeelInOff();
+void motorWheelInOff();
 
 int percent(int value);
 int robotPath(int distance);

@@ -196,7 +196,6 @@ void leftMove(int degrees)
 //* ------------------------------------------------------------------ *//
 {
 	int normalSpeed = percent(100);
-	int slowSpeed = percent(95);
 
 
 	while(SensorValue[15] > degrees)
@@ -221,7 +220,6 @@ void rightMove(int degrees)
 //* ------------------------------------------------------------------ *//
 {
 	int normalSpeed = -percent(100);
-	int slowSpeed = -percent(95);
 
 
 	while(SensorValue[15] < degrees)
@@ -246,7 +244,7 @@ void weightIn()
 
 void weightOut()
 {
-	weightMoveOut();
+	weightMoveDown();
 }
 
 void weightMoveUp()
