@@ -15,6 +15,8 @@ void autonomousControl();
 void arm();
 void movement();
 void allInOff();
+void motorsInOff();
+void motorWeelInOff();
 
 int percent(int value);
 int robotPath(int distance);
@@ -27,14 +29,17 @@ void rightMove();
 
 void weightMoveUp();
 void weightMoveDown();
+void weightOff();
 
 void pinMoveOpen();
 void pinMoveClose();
+void pinOff();
+void pinBlocked();
 
 void armMoveUp();
 void armMoveDown();
+void armBlocked();
 
-void staticHand();
 
 void startAllSensor();
 void startSensor(int sensor);

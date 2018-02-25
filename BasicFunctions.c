@@ -72,52 +72,22 @@ void motorsInOff()
 	}
 }
 
+void motorWheelInOff()
+{
+	int i;
+
+	for(i=0; i < 3; i++)
+	{
+		motor[i] = OFF;
+	}
+	motor[9] = OFF;
+}
+
 int percent(int value)
 {
 	int aux;
 	aux = ((value * MAX)/100);
 	return aux;
-}
-
-
-void forwardMove(int distance)
-//* ------------------------------------------------------------------ *//
-//* Move wheel motors for move robor on forward direction with encoders *//
-//* param: int distance (Value in centimeters) - The distance that the robot will travel. *//
-//* changes: array motor values equal to result of function percent (a number from -127 to 127). *//
-//* return: this function do not return anything. *//
-//* ------------------------------------------------------------------ *//
-{
-	int normalSpeed = percent(100);
-	int slowSpeed = percent(95);
-
-
-	while(SensorValue[23] < distance)
-	{
-		if(SensorValue[23] > SensorValue[25])		//* Every condition are wrong, surplus two motor values.
-		{
-			motor[0] = normalSpeed;
-			motor[1] = slowSpeed;
-			motor[2] = normalSpeed;
-			motor[9] = normalSpeed;
-		}
-		if(SensorValue[23] < SensorValue[25])		//* Wrong too.
-		{
-			motor[0] = slowSpeed;
-			motor[1] = normalSpeed;
-			motor[2] = normalSpeed;
-			motor[9] = normalSpeed;
-		}
-		if(SensorValue[23] == SensorValue[25])		//* Wrong too.
-		{
-			motor[0] = normalSpeed;
-			motor[1] = normalSpeed;
-			motor[2] = normalSpeed;
-			motor[9] = normalSpeed;
-		}
-	}
-	startSensor(23);
-	startSensor(25);
 }
 
 int robotPath(int distance)
@@ -131,36 +101,152 @@ void autonomousControl()
 	allInOff();
 }
 
-void backwardMove()
+void forwardMove(int distance)
+//* ------------------------------------------------------------------ *//
+//* Move wheel motors for move robot on forward direction with encoders and gyro *//
+//* param: int distance (Value in centimeters) - The distance that the robot will travel. *//
+//* changes: array motor values equal to result of function percent (a number from -127 to 127). *//
+//* return: this function do not return anything. *//
+//* ------------------------------------------------------------------ *//
 {
-	//*TODO: like forwardMove fuction.
+	int normalSpeed = percent(100);
+	int slowSpeed = percent(95);
+
+
+	while(SensorValue[11] < distance)
+	{
+		if(SensorValue[11] > SensorValue[13] && SensorValue[15] > 0)		//* Every condition are wrong, surplus two motor values.
+		{
+			motor[0] = normalSpeed;
+			motor[1] = slowSpeed;
+			motor[2] = normalSpeed;
+			motor[9] = normalSpeed;
+		}
+		if(SensorValue[11] < SensorValue[13] && SensorValue[15] < 0)		//* Wrong too.
+		{
+			motor[0] = normalSpeed;
+			motor[1] = normalSpeed;
+			motor[2] = slowSpeed;
+			motor[9] = normalSpeed;
+		}
+		if(SensorValue[11] == SensorValue[13] && SensorValue[15] == 0)		//* Wrong too.
+		{
+			motor[0] = normalSpeed;
+			motor[1] = normalSpeed;
+			motor[2] = normalSpeed;
+			motor[9] = normalSpeed;
+		}
+	}
+	startSensor(13);
+	startSensor(11);
+	startSensor(12);
+	startSensor(14);
+	motorWheelInOff();
 }
 
-void leftMove()
+void backwardMove(int distance)
+//* ------------------------------------------------------------------ *//
+//* Move wheel motors for move robot on forward direction with encoders and gyro *//
+//* param: int distance (Value in centimeters) - The distance that the robot will travel. *//
+//* changes: array motor values equal to result of function percent (a number from -127 to 127). *//
+//* return: this function do not return anything. *//
+//* ------------------------------------------------------------------ *//
 {
-	//*TODO: like forwardMove fuction.
+	int normalSpeed = -percent(100);
+	int slowSpeed = -percent(95);
+
+
+	while(SensorValue[11] < distance)
+	{
+		if(SensorValue[11] > SensorValue[13] && SensorValue[15] < 0)		//* Every condition are wrong, surplus two motor values.
+		{
+			motor[0] = normalSpeed;
+			motor[1] = slowSpeed;
+			motor[2] = normalSpeed;
+			motor[9] = normalSpeed;
+		}
+		if(SensorValue[11] < SensorValue[13] && SensorValue[15] > 0)		//* Wrong too.
+		{
+			motor[0] = normalSpeed;
+			motor[1] = normalSpeed;
+			motor[2] = slowSpeed;
+			motor[9] = normalSpeed;
+		}
+		if(SensorValue[11] == SensorValue[13] && SensorValue[15] == 0)		//* Wrong too.
+		{
+			motor[0] = normalSpeed;
+			motor[1] = normalSpeed;
+			motor[2] = normalSpeed;
+			motor[9] = normalSpeed;
+		}
+	}
+	startSensor(13);
+	startSensor(11);
+	startSensor(12);
+	startSensor(14);
+	motorWheelInOff();
 }
+
+void leftMove(int degrees)
+//* ------------------------------------------------------------------ *//
+//* Move wheel motors for turn left the robot with encoders and gyro *//
+//* param: int degrees (Value in degrees) - The distance that the robot will turn. *//
+//* changes: array motor values equal to result of function percent (a number from -127 to 127). *//
+//* return: this function do not return anything. *//
+//* ------------------------------------------------------------------ *//
+{
+	int normalSpeed = percent(100);
+	int slowSpeed = percent(95);
+
+
+	while(SensorValue[15] > degrees)
+	{
+		motor[0] = normalSpeed;
+		motor[9] = normalSpeed;
+	}
+	startSensor(13);
+	startSensor(11);
+	startSensor(12);
+	startSensor(14);
+	motorWheelInOff();
+}
+
 
 void rightMove()
+//* ------------------------------------------------------------------ *//
+//* Move wheel motors for turn left the robot with encoders and gyro *//
+//* param: int degrees (Value in degrees) - The distance that the robot will turn. *//
+//* changes: array motor values equal to result of function percent (a number from -127 to 127). *//
+//* return: this function do not return anything. *//
+//* ------------------------------------------------------------------ *//
 {
-	//*TODO: like forwardMove fuction.
+	int normalSpeed = -percent(100);
+	int slowSpeed = -percent(95);
+
+
+	while(SensorValue[15] < degrees)
+	{
+		motor[0] = normalSpeed;
+		motor[9] = normalSpeed;
+	}
+	startSensor(13);
+	startSensor(11);
+	startSensor(12);
+	startSensor(14);
+	motorWheelInOff();
 }
 
 void weightIn()
 {
-	if(SensorValue[21] == 1)
+	if(SensorValue[16] == 1 && SensorValue[17] == 1)
 	{
 		weightMoveUp();
-		while(SensorValue[22] == 0)
-		{
-			//* Robot is lifting the tray. TO DO: we need to change this wasted time.
-		}
 	}
 }
 
 void weightOut()
 {
-
+	weightMoveOut();
 }
 
 void weightMoveUp()
@@ -173,6 +259,11 @@ void weightMoveDown()
 	motor[7] = percent(100);
 }
 
+void weightOff()
+{
+	motor[7] = OFF;
+}
+
 void pinMoveOpen()
 {
 	motor[8] = percent(100);
@@ -181,6 +272,16 @@ void pinMoveOpen()
 void pinMoveClose()
 {
 	motor[8] = percent(-100);
+}
+
+void pinOff()
+{
+	motor[8] = OFF;
+}
+
+void pinBlocked()
+{
+	motor[8] = percent(-10);
 }
 
 void armMoveUp()
@@ -195,10 +296,20 @@ void armMoveDown()
 	motor[6] = percent(100);
 }
 
-void staticHand()
+void armBlocked()
 {
-	motor[5] = percent(25);
-	motor[6] = percent(-25);
+	/* Motor integrated encoder
+	if(nMotorEnconder[motor] > 100)
+	{
+		motor[5] = percent(20);
+		motor[6] = percent(-20);
+	}
+	if(nMotorEnconder[motor] < 100)
+	{
+		motor[5] = percent(-20);
+		motor[6] = percent(20);
+	}
+	*/
 }
 
 void startAllSensor()
@@ -209,6 +320,7 @@ void startAllSensor()
 	{
 		startSensor(i);
 	}
+	//*nMotorEnconder[motor] = 0;
 }
 
 void startSensor (int sensor)
