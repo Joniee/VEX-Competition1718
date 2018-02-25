@@ -115,10 +115,9 @@ void forwardMove(int distance)
 			motor[2] = normalSpeed;
 			motor[9] = normalSpeed;
 		}
-
-		startSensor(23);
-		startSensor(25);
 	}
+	startSensor(23);
+	startSensor(25);
 }
 
 int robotPath(int distance)
