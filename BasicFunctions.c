@@ -50,7 +50,23 @@ void allInOff()
 //* return: this function do not return anything. *//
 //* ------------------------------------------------------------------ *//
 {
-	for(int i=0; i < 10; i++)
+	int i;
+
+	for(int i = 0; i < NUMBER_MOTOR; i++)
+	{
+		motor[i] = OFF;
+	}
+	for(i = NUMBER_MOTOR; i < LAST_SENSOR; i++)
+	{
+		SensorValue[i] = OFF;
+	}
+}
+
+void motorsInOff()
+{
+	int i;
+
+	for(i = 0; i < NUMBER_MOTOR; i++)
 	{
 		motor[i] = OFF;
 	}
@@ -63,54 +79,6 @@ int percent(int value)
 	return aux;
 }
 
-void rotateGyroExample(int degrees)
-{
-	degrees = degrees * 10; // Number of the Degrees to rotate, multiply it by 10 (Gyro specs)
-
-	/*
-		/!\ It is important to notice that, our configuration of the VEX UAB base, the "turning" effect
-		may be different. How could the robot turns itself??!!
-	*/
-
-	// Gyro example configured on Analog In 8
-  while(abs(SensorValue[in8]) != degrees)
-  {
-    if(abs(SensorValue[in8]) > degrees)
-    {
-      motor[rightMotor] = -30; // You need to change that for the correct motor
-      motor[leftMotor] = 30;   // You need to change that for the correct motor
-    }
-    else
-    {
-      motor[rightMotor] = 30; // You need to change that for the correct motor
-      motor[leftMotor] = -30; // You need to change that for the correct motor
-    }
-  }
-
-  // Brake example
-  // It is cool:
-  // motor[x] = -5;
-  // motor[y] = 5;
-
-
-  // The following code is extracted from https://renegaderobotics.org/getting-started-with-the-vex-gyro-sensor/
-  // The scaling factor is used to correct the desired values and accomodate it to the sensor, because the sensor is not ideal.
-  // It is obtained by calibrating it, turning the robot 90º exactly, and what the gyro reads for that.
-  // The same for 180, 270 (divide the values to 10 and X, where X is [90, 180, 270] and then calcule its mean)
-
-  /*
-
-  	desiredValue = round(90 * 10 * scalingFactor);
-		actualValue = get(sensorValue);
-		while (actualValue <= desiredValue) {
-			set chassis motors so robot turns;
-			wait(100);
-			actualValue = get(sensorValue);
-		}
-		set chassis motors to 0;
-  */
-
-}
 
 void forwardMove(int distance)
 //* ------------------------------------------------------------------ *//
@@ -148,8 +116,8 @@ void forwardMove(int distance)
 			motor[9] = normalSpeed;
 		}
 
-//		startSensor(23); // Lol !: If you restart the sensor inner the while loop, it will be INFINITE.
-//		startSensor(25);
+		startSensor(23);
+		startSensor(25);
 	}
 }
 
@@ -236,7 +204,9 @@ void staticHand()
 
 void startAllSensor()
 {
-	for(int i = (33-5); i <= 25; i++)
+	int i;
+
+	for(i = (NUMBER_MOTOR); i <= LAST_SENSOR; i++)
 	{
 		startSensor(i);
 	}
