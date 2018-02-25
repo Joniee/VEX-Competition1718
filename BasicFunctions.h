@@ -4,9 +4,9 @@
 #define WHEEL 31.91857472	//* Value in centimeters.
 #define MAX 127
 #define OFF 0
-#define NUMBER_SENSOR = 5			//* Number of sensors connected.
-#define LAST_SENSOR = 33		//* Variable's name of last sensor connected.
-#define NUMBER_MOTOR = 10			//* Number of motors connected.
+#define NUMBER_SENSOR 5			//* Number of sensors connected.
+#define LAST_SENSOR 33		//* Variable's name of last sensor connected.
+#define NUMBER_MOTOR 10			//* Number of motors connected.
 
 int HAND = 0;
 
