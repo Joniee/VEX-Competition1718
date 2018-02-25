@@ -27,6 +27,20 @@ void pre_auton()
   // manage all user created tasks if set to false.
   bStopTasksBetweenModes = true;
   allInOff();
+
+
+  /*
+  	Restart all the Sensors
+  */
+  startAllSensor();
+
+  /*
+  	Configuration of the Gyro sensor
+  */
+  SensorType[in8] = sensorNone;
+  // wait time...? Look the Gyro Based Turns - Better.c example. How it affect on the competition?
+  SensorType[in8] = sensorGyro;
+
 }
 
 task usercontrol()
