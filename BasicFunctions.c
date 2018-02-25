@@ -111,25 +111,26 @@ void forwardMove(int distance)
 {
 	int normalSpeed = percent(100);
 	int slowSpeed = percent(95);
+	int initialValue = SensorValue[15];
 
 
 	while(SensorValue[11] < distance)
 	{
-		if(SensorValue[11] > SensorValue[13] && SensorValue[15] > 0)		//* Every condition are wrong, surplus two motor values.
+		if(SensorValue[11] > SensorValue[13] && SensorValue[15] > initialValue)		//* Every condition are wrong, surplus two motor values.
 		{
 			motor[0] = normalSpeed;
 			motor[1] = slowSpeed;
 			motor[2] = normalSpeed;
 			motor[9] = normalSpeed;
 		}
-		if(SensorValue[11] < SensorValue[13] && SensorValue[15] < 0)		//* Wrong too.
+		if(SensorValue[11] < SensorValue[13] && SensorValue[15] < initialValue)		//* Wrong too.
 		{
 			motor[0] = normalSpeed;
 			motor[1] = normalSpeed;
 			motor[2] = slowSpeed;
 			motor[9] = normalSpeed;
 		}
-		if(SensorValue[11] == SensorValue[13] && SensorValue[15] == 0)		//* Wrong too.
+		if(SensorValue[11] == SensorValue[13] && SensorValue[15] == initialValue)		//* Wrong too.
 		{
 			motor[0] = normalSpeed;
 			motor[1] = normalSpeed;
@@ -154,25 +155,26 @@ void backwardMove(int distance)
 {
 	int normalSpeed = -percent(100);
 	int slowSpeed = -percent(95);
+	int initialValue = SensorValue[15];
 
 
 	while(SensorValue[11] < distance)
 	{
-		if(SensorValue[11] > SensorValue[13] && SensorValue[15] < 0)		//* Every condition are wrong, surplus two motor values.
+		if(SensorValue[11] > SensorValue[13] && SensorValue[15] < initialValue)		//* Every condition are wrong, surplus two motor values.
 		{
 			motor[0] = normalSpeed;
 			motor[1] = slowSpeed;
 			motor[2] = normalSpeed;
 			motor[9] = normalSpeed;
 		}
-		if(SensorValue[11] < SensorValue[13] && SensorValue[15] > 0)		//* Wrong too.
+		if(SensorValue[11] < SensorValue[13] && SensorValue[15] > initialValue)		//* Wrong too.
 		{
 			motor[0] = normalSpeed;
 			motor[1] = normalSpeed;
 			motor[2] = slowSpeed;
 			motor[9] = normalSpeed;
 		}
-		if(SensorValue[11] == SensorValue[13] && SensorValue[15] == 0)		//* Wrong too.
+		if(SensorValue[11] == SensorValue[13] && SensorValue[15] == initialValue)		//* Wrong too.
 		{
 			motor[0] = normalSpeed;
 			motor[1] = normalSpeed;
@@ -196,9 +198,10 @@ void leftMove(int degrees)
 //* ------------------------------------------------------------------ *//
 {
 	int normalSpeed = percent(100);
+	int finalValue = SensorValue[15] - degrees;
 
 
-	while(SensorValue[15] > degrees)
+	while(SensorValue[15] > finalValue)
 	{
 		motor[0] = normalSpeed;
 		motor[9] = normalSpeed;
@@ -213,16 +216,17 @@ void leftMove(int degrees)
 
 void rightMove(int degrees)
 //* ------------------------------------------------------------------ *//
-//* Move wheel motors for turn left the robot with encoders and gyro *//
+//* Move wheel motors for turn right the robot with encoders and gyro *//
 //* param: int degrees (Value in degrees) - The distance that the robot will turn. *//
 //* changes: array motor values equal to result of function percent (a number from -127 to 127). *//
 //* return: this function do not return anything. *//
 //* ------------------------------------------------------------------ *//
 {
 	int normalSpeed = -percent(100);
+	int finalValue = SensorValue[15] - degrees;
 
 
-	while(SensorValue[15] < degrees)
+	while(SensorValue[15] < finalValue)
 	{
 		motor[0] = normalSpeed;
 		motor[9] = normalSpeed;
