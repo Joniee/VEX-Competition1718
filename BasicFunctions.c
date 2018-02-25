@@ -50,9 +50,7 @@ void allInOff()
 //* return: this function do not return anything. *//
 //* ------------------------------------------------------------------ *//
 {
-	int i = 0;
-
-	for(i; i < 10; i++)		//* I can't understand why (*Warning*:Meaningless statement -- no code generated)
+	for(int i=0; i < 10; i++)
 	{
 		motor[i] = OFF;
 	}
@@ -190,9 +188,7 @@ void staticHand()
 
 void startAllSensor()
 {
-	int i;
-	i = (33-5);				//* I can't understand why i can't put defined vars.
-	for(i; i <= 25; i++)	//* I can't understand why (*Warning*:Meaningless statement -- no code generated)
+	for(int i = (33-5); i <= 25; i++)
 	{
 		startSensor(i);
 	}
