@@ -20,8 +20,8 @@ void movement()
 	{
 		y = 0;
 	}
-	motor[9] = (percent(-(x+y)));
-	motor[0] = (percent(-(-x+y)));
+	motor[8] = (percent(-(x+y)));
+	motor[9] = (percent(-(-x+y)));
 	motor[2] = (percent(-(x-y)));
 	motor[1] = (percent(x+y));
 
@@ -38,7 +38,7 @@ void arm()
 //* ------------------------------------------------------------------ *//
 {
 	int x = vexRT[Ch2];
-	motor[5] = (percent(-x));
+	motor[5] = (percent(x));
 	motor[6] = (percent(x));
 }
 
@@ -74,13 +74,10 @@ void motorsInOff()
 
 void motorWheelInOff()
 {
-	int i;
-
-	for(i=0; i < 3; i++)
-	{
-		motor[i] = OFF;
-	}
+	motor[8] = OFF;
 	motor[9] = OFF;
+	motor[1] = OFF;
+	motor[2] = OFF;
 }
 
 int percent(int value)
@@ -118,21 +115,21 @@ void forwardMove(int distance)
 	{
 		if(SensorValue[20] > SensorValue[22] && SensorValue[10] > initialValue)		//* Every condition are wrong, surplus two motor values.
 		{
-			motor[0] = normalSpeed;
+			motor[8] = normalSpeed;
 			motor[1] = slowSpeed;
 			motor[2] = normalSpeed;
 			motor[9] = normalSpeed;
 		}
 		if(SensorValue[20] < SensorValue[22] && SensorValue[10] < initialValue)		//* Wrong too.
 		{
-			motor[0] = normalSpeed;
+			motor[8] = normalSpeed;
 			motor[1] = normalSpeed;
 			motor[2] = slowSpeed;
 			motor[9] = normalSpeed;
 		}
 		if(SensorValue[20] == SensorValue[22] && SensorValue[10] == initialValue)		//* Wrong too.
 		{
-			motor[0] = normalSpeed;
+			motor[8] = normalSpeed;
 			motor[1] = normalSpeed;
 			motor[2] = normalSpeed;
 			motor[9] = normalSpeed;
@@ -162,21 +159,21 @@ void backwardMove(int distance)
 	{
 		if(SensorValue[20] > SensorValue[22] && SensorValue[10] < initialValue)		//* Every condition are wrong, surplus two motor values.
 		{
-			motor[0] = normalSpeed;
+			motor[8] = normalSpeed;
 			motor[1] = slowSpeed;
 			motor[2] = normalSpeed;
 			motor[9] = normalSpeed;
 		}
 		if(SensorValue[20] < SensorValue[22] && SensorValue[10] > initialValue)		//* Wrong too.
 		{
-			motor[0] = normalSpeed;
+			motor[8] = normalSpeed;
 			motor[1] = normalSpeed;
 			motor[2] = slowSpeed;
 			motor[9] = normalSpeed;
 		}
 		if(SensorValue[20] == SensorValue[22] && SensorValue[10] == initialValue)		//* Wrong too.
 		{
-			motor[0] = normalSpeed;
+			motor[8] = normalSpeed;
 			motor[1] = normalSpeed;
 			motor[2] = normalSpeed;
 			motor[9] = normalSpeed;
@@ -203,7 +200,7 @@ void leftMove(int degrees)
 
 	while(SensorValue[10] > finalValue)
 	{
-		motor[0] = normalSpeed;
+		motor[8] = normalSpeed;
 		motor[9] = normalSpeed;
 	}
 	startSensor(20);
@@ -228,7 +225,7 @@ void rightMove(int degrees)
 
 	while(SensorValue[10] < finalValue)
 	{
-		motor[0] = normalSpeed;
+		motor[8] = normalSpeed;
 		motor[9] = normalSpeed;
 	}
 	startSensor(20);
@@ -253,41 +250,44 @@ void weightOut()
 
 void weightMoveUp()
 {
-	motor[7] = percent(-100);
+	motor[3] = percent(100);
+	motor[4] = -percent(100);
 	if (SensorValue[27] == 1)
 	{
-		motor[7] = OFF;
+		weightOff();
 	}
 }
 
 void weightMoveDown()
 {
-	motor[7] = percent(100);
+	motor[3] = percent(100);
+	motor[4] = -percent(100);
 }
 
 void weightOff()
 {
-	motor[7] = OFF;
+	motor[3] = OFF;
+	motor[4] = OFF;
 }
 
 void pinMoveOpen()
 {
-	motor[8] = percent(100);
+	motor[7] = percent(100);
 }
 
 void pinMoveClose()
 {
-	motor[8] = percent(-100);
+	motor[7] = percent(-100);
 }
 
 void pinOff()
 {
-	motor[8] = OFF;
+	motor[7] = OFF;
 }
 
 void pinBlocked()
 {
-	motor[8] = percent(-10);
+	motor[7] = percent(-10);
 }
 
 void armMoveUp()

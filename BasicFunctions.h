@@ -28,6 +28,8 @@ void rightMove(int degrees);
 
 void weightMoveUp();
 void weightMoveDown();
+void weightIn();
+void weightOut();
 void weightOff();
 
 void pinMoveOpen();
