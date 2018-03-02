@@ -116,21 +116,21 @@ void forwardMove(int distance)
 
 	while(SensorValue[11] < distance)
 	{
-		if(SensorValue[11] > SensorValue[13] && SensorValue[15] > initialValue)		//* Every condition are wrong, surplus two motor values.
+		if(SensorValue[20] > SensorValue[22] && SensorValue[10] > initialValue)		//* Every condition are wrong, surplus two motor values.
 		{
 			motor[0] = normalSpeed;
 			motor[1] = slowSpeed;
 			motor[2] = normalSpeed;
 			motor[9] = normalSpeed;
 		}
-		if(SensorValue[11] < SensorValue[13] && SensorValue[15] < initialValue)		//* Wrong too.
+		if(SensorValue[20] < SensorValue[22] && SensorValue[10] < initialValue)		//* Wrong too.
 		{
 			motor[0] = normalSpeed;
 			motor[1] = normalSpeed;
 			motor[2] = slowSpeed;
 			motor[9] = normalSpeed;
 		}
-		if(SensorValue[11] == SensorValue[13] && SensorValue[15] == initialValue)		//* Wrong too.
+		if(SensorValue[20] == SensorValue[22] && SensorValue[10] == initialValue)		//* Wrong too.
 		{
 			motor[0] = normalSpeed;
 			motor[1] = normalSpeed;
@@ -138,10 +138,10 @@ void forwardMove(int distance)
 			motor[9] = normalSpeed;
 		}
 	}
-	startSensor(13);
-	startSensor(11);
-	startSensor(12);
-	startSensor(14);
+	startSensor(20);
+	startSensor(21);
+	startSensor(22);
+	startSensor(23);
 	motorWheelInOff();
 }
 
@@ -158,23 +158,23 @@ void backwardMove(int distance)
 	int initialValue = SensorValue[15];
 
 
-	while(SensorValue[11] < distance)
+	while(SensorValue[20] < distance)
 	{
-		if(SensorValue[11] > SensorValue[13] && SensorValue[15] < initialValue)		//* Every condition are wrong, surplus two motor values.
+		if(SensorValue[20] > SensorValue[22] && SensorValue[10] < initialValue)		//* Every condition are wrong, surplus two motor values.
 		{
 			motor[0] = normalSpeed;
 			motor[1] = slowSpeed;
 			motor[2] = normalSpeed;
 			motor[9] = normalSpeed;
 		}
-		if(SensorValue[11] < SensorValue[13] && SensorValue[15] > initialValue)		//* Wrong too.
+		if(SensorValue[20] < SensorValue[22] && SensorValue[10] > initialValue)		//* Wrong too.
 		{
 			motor[0] = normalSpeed;
 			motor[1] = normalSpeed;
 			motor[2] = slowSpeed;
 			motor[9] = normalSpeed;
 		}
-		if(SensorValue[11] == SensorValue[13] && SensorValue[15] == initialValue)		//* Wrong too.
+		if(SensorValue[20] == SensorValue[22] && SensorValue[10] == initialValue)		//* Wrong too.
 		{
 			motor[0] = normalSpeed;
 			motor[1] = normalSpeed;
@@ -182,10 +182,10 @@ void backwardMove(int distance)
 			motor[9] = normalSpeed;
 		}
 	}
-	startSensor(13);
-	startSensor(11);
-	startSensor(12);
-	startSensor(14);
+	startSensor(20);
+	startSensor(21);
+	startSensor(22);
+	startSensor(23);
 	motorWheelInOff();
 }
 
@@ -198,18 +198,18 @@ void leftMove(int degrees)
 //* ------------------------------------------------------------------ *//
 {
 	int normalSpeed = percent(100);
-	int finalValue = SensorValue[15] - degrees;
+	int finalValue = SensorValue[10] - degrees;
 
 
-	while(SensorValue[15] > finalValue)
+	while(SensorValue[10] > finalValue)
 	{
 		motor[0] = normalSpeed;
 		motor[9] = normalSpeed;
 	}
-	startSensor(13);
-	startSensor(11);
-	startSensor(12);
-	startSensor(14);
+	startSensor(20);
+	startSensor(21);
+	startSensor(22);
+	startSensor(23);
 	motorWheelInOff();
 }
 
@@ -223,24 +223,24 @@ void rightMove(int degrees)
 //* ------------------------------------------------------------------ *//
 {
 	int normalSpeed = -percent(100);
-	int finalValue = SensorValue[15] - degrees;
+	int finalValue = SensorValue[10] - degrees;
 
 
-	while(SensorValue[15] < finalValue)
+	while(SensorValue[10] < finalValue)
 	{
 		motor[0] = normalSpeed;
 		motor[9] = normalSpeed;
 	}
-	startSensor(13);
-	startSensor(11);
-	startSensor(12);
-	startSensor(14);
+	startSensor(20);
+	startSensor(21);
+	startSensor(22);
+	startSensor(23);
 	motorWheelInOff();
 }
 
 void weightIn()
 {
-	if(SensorValue[16] == 1 && SensorValue[17] == 1)
+	if(SensorValue[27] == 1)
 	{
 		weightMoveUp();
 	}
@@ -254,6 +254,10 @@ void weightOut()
 void weightMoveUp()
 {
 	motor[7] = percent(-100);
+	if (SensorValue[27] == 1)
+	{
+		motor[7] = OFF;
+	}
 }
 
 void weightMoveDown()
